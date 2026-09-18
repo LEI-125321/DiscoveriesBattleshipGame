@@ -11,5 +11,8 @@ Basic academic version of Battleship game to build upon.
 | Miguel Matos   | 129886 |
 | Santiago Alves | 129861 |
 
+## 1. Setup
+Each player places their ships on the grid without revealing their positions to the opponent.
 Turns:
 in each turn one player will attack and thy will swich each turn. the attacking player starts   by saying a coordinate and the other player will say if it there is a boat there or not if a ship was hit in all it´s squares it gets sunk
+
