@@ -5,7 +5,6 @@ package iscteiul.ista.battleship;
 
 import java.util.Scanner;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +25,6 @@ public class Tasks {
     private static final String BATOTA = "mapa";
     private static final String STATUS = "estado";
 
-
     /////////////////////////////////////////////////////////////////////////////
     // hereafter one may find some code that can be converted to automatic tests,
     // as long as appropriate changes are made. It also shows that we should
@@ -40,6 +38,7 @@ public class Tasks {
      */
     public static void taskA() {
         Scanner in = new Scanner(System.in);
+        LOGGER.info("A aguardar dados do navio e posições para teste...");
         while (in.hasNext()) {
             Ship s = readShip(in);
             if (s != null)
@@ -56,8 +55,12 @@ public class Tasks {
     public static void taskB() {
         Scanner in = new Scanner(System.in);
         IFleet fleet = null;
+
+        LOGGER.info("A aguardar comando (nova, estado, desisto)...");
         String command = in.next();
+
         while (!command.equals(DESISTIR)) {
+            LOGGER.info("Comando inserido: {}", command); // Feedback added here
             switch (command) {
                 case NOVAFROTA:
                     fleet = buildFleet(in);
@@ -70,8 +73,10 @@ public class Tasks {
                     LOGGER.info("Que comando é esse??? Repete lá ...");
             }
             // The other commands are unknown in this task
+            LOGGER.info("A aguardar comando (nova, estado, desisto)...");
             command = in.next();
         }
+        LOGGER.info("Comando inserido: {}", command); // Feedback for exit command
         LOGGER.info(GOODBYE_MESSAGE);
     }
 
@@ -82,8 +87,12 @@ public class Tasks {
     public static void taskC() {
         Scanner in = new Scanner(System.in);
         IFleet fleet = null;
+
+        LOGGER.info("A aguardar comando (nova, estado, mapa, desisto)...");
         String command = in.next();
+
         while (!command.equals(DESISTIR)) {
+            LOGGER.info("Comando inserido: {}", command); // Feedback added here
             switch (command) {
                 case NOVAFROTA:
                     fleet = buildFleet(in);
@@ -99,8 +108,10 @@ public class Tasks {
                     LOGGER.info("Que comando é esse??? Repete lá ...");
             }
             // The other commands are unknown in this task
+            LOGGER.info("A aguardar comando (nova, estado, mapa, desisto)...");
             command = in.next();
         }
+        LOGGER.info("Comando inserido: {}", command); // Feedback for exit command
         LOGGER.info(GOODBYE_MESSAGE);
     }
 
@@ -108,12 +119,15 @@ public class Tasks {
      * This task also tests the fighting element of a round of three shots
      */
     public static void taskD() {
-
         Scanner in = new Scanner(System.in);
         IFleet fleet = null;
         IGame game = null;
+
+        LOGGER.info("A aguardar comando (nova, estado, mapa, rajada, ver, desisto)...");
         String command = in.next();
+
         while (!command.equals(DESISTIR)) {
+            LOGGER.info("Comando inserido: {}", command); // Feedback added here
             switch (command) {
                 case NOVAFROTA:
                     fleet = buildFleet(in);
@@ -129,6 +143,7 @@ public class Tasks {
                     break;
                 case RAJADA:
                     if (game != null) {
+                        LOGGER.info("A aguardar {} tiros (linha e coluna)...", NUMBER_SHOTS);
                         firingRound(in, game);
 
                         LOGGER.info("Hits: {} Inv: {} Rep: {} Restam {} navios.", game.getHits(), game.getInvalidShots(),
@@ -144,8 +159,11 @@ public class Tasks {
                 default:
                     LOGGER.info("Que comando é esse??? Repete ...");
             }
+
+            LOGGER.info("A aguardar comando (nova, estado, mapa, rajada, ver, desisto)...");
             command = in.next();
         }
+        LOGGER.info("Comando inserido: {}", command); // Feedback for exit command
         LOGGER.info(GOODBYE_MESSAGE);
     }
 
@@ -184,8 +202,10 @@ public class Tasks {
      * @return The created ship based on the data that has been read
      */
     static Ship readShip(Scanner in) {
+        LOGGER.info("A aguardar inserção de navios para a frota... (BARCA, CARAVELA, NAU, FRAGATA, GALEAO)");
         String shipKind = in.next();
         Position pos = readPosition(in);
+        LOGGER.info("Inserir direção do barco (n, s, e, o):");
         char c = in.next().charAt(0);
         Compass bearing = Compass.charToCompass(c);
         return Ship.buildShip(shipKind, bearing, pos);
@@ -198,8 +218,11 @@ public class Tasks {
      * @return The position that has been read
      */
     static Position readPosition(Scanner in) {
+        LOGGER.info("Insira a linha pretendida para o barco: ");
         int row = in.nextInt();
+        LOGGER.info("Insira a coluna pretendida para o barco: ");
         int column = in.nextInt();
+        LOGGER.info("Posição inserida: {}, {}", row, column);
         return new Position(row, column);
     }
 
@@ -217,7 +240,5 @@ public class Tasks {
             if (sh != null)
                 LOGGER.info("Mas... mas... {}s nao sao a prova de bala? :-(", sh.getCategory());
         }
-
     }
-
 }
