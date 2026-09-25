@@ -1,15 +1,27 @@
 /**
- *
+ * Represents a frigate ship in the Battleship game.
+ * <p>
+ * A frigate occupies four consecutive positions on the board.
+ * Its positions depend on its bearing:
+ * NORTH, SOUTH, EAST or WEST.
+ * </p>
  */
-package iscteiul.ista.battleship;
-
 public class Frigate extends Ship {
+
     private static final Integer SIZE = 4;
     private static final String NAME = "Fragata";
 
     /**
-     * @param bearing
-     * @param pos
+     * Creates a new frigate with the specified bearing and initial position.
+     * <p>
+     * The frigate occupies four consecutive positions. For NORTH and SOUTH
+     * bearings, the positions are arranged vertically. For EAST and WEST
+     * bearings, the positions are arranged horizontally.
+     * </p>
+     *
+     * @param bearing the direction in which the frigate is positioned
+     * @param pos the initial position of the frigate
+     * @throws IllegalArgumentException if the specified bearing is invalid
      */
     public Frigate(Compass bearing, IPosition pos) throws IllegalArgumentException {
         super(Frigate.NAME, bearing, pos);
@@ -29,10 +41,10 @@ public class Frigate extends Ship {
         }
     }
 
-    /*
-     * (non-Javadoc)
+    /**
+     * Returns the size of the frigate.
      *
-     * @see battleship.Ship#getSize()
+     * @return the number of positions occupied by the frigate
      */
     @Override
     public Integer getSize() {
