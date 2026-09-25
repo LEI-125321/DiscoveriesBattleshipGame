@@ -1,12 +1,12 @@
-/**
- *
- */
 package iscteiul.ista.battleship;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Base implementation shared by all ship types.
+ */
 public abstract class Ship implements IShip {
 
     private static final String GALEAO = "galeao";
@@ -16,10 +16,12 @@ public abstract class Ship implements IShip {
     private static final String BARCA = "barca";
 
     /**
-     * @param shipKind
-     * @param bearing
-     * @param pos
-     * @return
+     * Creates the concrete ship represented by a category name.
+     *
+     * @param shipKind the category name
+     * @param bearing the ship's orientation
+     * @param pos the ship's initial position
+     * @return the corresponding ship, or {@code null} for an unknown category
      */
     static Ship buildShip(String shipKind, Compass bearing, Position pos) {
         Ship s;
@@ -53,9 +55,11 @@ public abstract class Ship implements IShip {
 
 
     /**
-     * @param category
-     * @param bearing
-     * @param pos
+     * Creates a ship with the supplied category, orientation, and initial position.
+     *
+     * @param category the ship category
+     * @param bearing the ship's orientation
+     * @param pos the ship's initial position
      */
     public Ship(String category, Compass bearing, IPosition pos) {
         assert bearing != null;
@@ -67,10 +71,8 @@ public abstract class Ship implements IShip {
         positions = new ArrayList<>();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getCategory()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getCategory() {
@@ -78,36 +80,30 @@ public abstract class Ship implements IShip {
     }
 
     /**
-     * @return the positions
+     * {@inheritDoc}
      */
     public List<IPosition> getPositions() {
         return positions;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getPosition()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public IPosition getPosition() {
         return pos;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getBearing()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Compass getBearing() {
         return bearing;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#stillFloating()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean stillFloating() {
@@ -117,10 +113,8 @@ public abstract class Ship implements IShip {
         return false;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getTopMostPos()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getTopMostPos() {
@@ -131,10 +125,8 @@ public abstract class Ship implements IShip {
         return top;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getBottomMostPos()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getBottomMostPos() {
@@ -145,10 +137,8 @@ public abstract class Ship implements IShip {
         return bottom;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getLeftMostPos()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getLeftMostPos() {
@@ -159,10 +149,8 @@ public abstract class Ship implements IShip {
         return left;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#getRightMostPos()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getRightMostPos() {
@@ -173,10 +161,8 @@ public abstract class Ship implements IShip {
         return right;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#occupies(battleship.IPosition)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean occupies(IPosition pos) {
@@ -188,10 +174,8 @@ public abstract class Ship implements IShip {
         return false;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#tooCloseTo(battleship.IShip)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean tooCloseTo(IShip other) {
@@ -205,10 +189,8 @@ public abstract class Ship implements IShip {
         return false;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#tooCloseTo(battleship.IPosition)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean tooCloseTo(IPosition pos) {
@@ -219,10 +201,8 @@ public abstract class Ship implements IShip {
     }
 
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IShip#shoot(battleship.IPosition)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void shoot(IPosition pos) {
@@ -235,6 +215,11 @@ public abstract class Ship implements IShip {
     }
 
 
+    /**
+     * Returns a concise representation containing the category, orientation, and initial position.
+     *
+     * @return a string representation of this ship
+     */
     @Override
     public String toString() {
         return "[" + category + " " + bearing + " " + pos + "]";
