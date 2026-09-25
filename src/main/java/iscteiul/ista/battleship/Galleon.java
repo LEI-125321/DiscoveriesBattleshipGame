@@ -3,13 +3,28 @@
  */
 package iscteiul.ista.battleship;
 
+/**
+ * Represents a galleon ship in the Battleship game.
+ * <p>
+ * A galleon occupies five positions on the board. Its position layout
+ * depends on its bearing.
+ * </p>
+ */
 public class Galleon extends Ship {
     private static final Integer SIZE = 5;
     private static final String NAME = "Galeao";
 
     /**
-     * @param bearing
-     * @param pos
+     * Creates a new galleon with the specified bearing and initial position.
+     * <p>
+     * The positions occupied by the galleon are determined according to
+     * the specified bearing.
+     * </p>
+     *
+     * @param bearing the direction in which the galleon is positioned
+     * @param pos the initial position of the galleon
+     * @throws IllegalArgumentException if the specified bearing is invalid
+     * @throws NullPointerException if the bearing is {@code null}
      */
     public Galleon(Compass bearing, IPosition pos) throws IllegalArgumentException {
         super(Galleon.NAME, bearing, pos);
@@ -36,16 +51,21 @@ public class Galleon extends Ship {
         }
     }
 
-    /*
-     * (non-Javadoc)
+    /**
+     * Returns the size of the galleon.
      *
-     * @see battleship.Ship#getSize()
+     * @return the number of positions occupied by the galleon
      */
     @Override
     public Integer getSize() {
         return Galleon.SIZE;
     }
 
+    /**
+     * Fills the positions occupied by the galleon when facing north.
+     *
+     * @param pos the initial position of the galleon
+     */
     private void fillNorth(IPosition pos) {
         for (int i = 0; i < 3; i++) {
             getPositions().add(new Position(pos.getRow(), pos.getColumn() + i));
@@ -54,6 +74,11 @@ public class Galleon extends Ship {
         getPositions().add(new Position(pos.getRow() + 2, pos.getColumn() + 1));
     }
 
+    /**
+     * Fills the positions occupied by the galleon when facing south.
+     *
+     * @param pos the initial position of the galleon
+     */
     private void fillSouth(IPosition pos) {
         for (int i = 0; i < 2; i++) {
             getPositions().add(new Position(pos.getRow() + i, pos.getColumn()));
@@ -63,6 +88,11 @@ public class Galleon extends Ship {
         }
     }
 
+    /**
+     * Fills the positions occupied by the galleon when facing east.
+     *
+     * @param pos the initial position of the galleon
+     */
     private void fillEast(IPosition pos) {
         getPositions().add(new Position(pos.getRow(), pos.getColumn()));
         for (int i = 1; i < 4; i++) {
@@ -71,6 +101,11 @@ public class Galleon extends Ship {
         getPositions().add(new Position(pos.getRow() + 2, pos.getColumn()));
     }
 
+    /**
+     * Fills the positions occupied by the galleon when facing west.
+     *
+     * @param pos the initial position of the galleon
+     */
     private void fillWest(IPosition pos) {
         getPositions().add(new Position(pos.getRow(), pos.getColumn()));
         for (int i = 1; i < 4; i++) {
