@@ -1,0 +1,32 @@
+name: notificar-workflow.yml
+on:
+  pull_request:
+    types: [review_requested]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comentar no PR para notificar os revisores
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Captura os revisores solicitados no evento
+            const requestedReviewers = context.payload.pull_request.requested_reviewers;
+            
+            // Se existirem revisores, formata a menção com @
+            if (requestedReviewers && requestedReviewers.length > 0) {
+              const mentions = requestedReviewers.map(r => `@${r.login}`).join(', ');
+              const mensagem = `👋 Olá ${mentions}! Este Pull Request está pronto e a aguardar a vossa revisão.`;
+            
+              // Adiciona o comentário ao Pull Request
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: mensagem
+              });
+            }
