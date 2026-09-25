@@ -121,5 +121,7 @@ The exact input may vary depending on how you build the fleet, but the structure
 
 ## 5. Notes
 
-This project is mainly a learning exercise in Java OO design and Battleship rules. It is not a full two-player graphical game; it is a command-line game focused on fleet creation, board validation, shot tracking, and ship sinking logic. Also, it was developed with the assistance of AI language models. GitHub Copilot, Gemini, and ChatGPT were used as supplementary tools for coding, debugging, and documentation support.
+This project is mainly a learning exercise in Java OO design and Battleship rules. It is not a full two-player graphical game; it is a command-line game focused on fleet creation, board validation, shot tracking, and ship sinking logic. 
+
+Also, it was developed with the assistance of AI language models. GitHub Copilot, Gemini, and ChatGPT were used as supplementary tools for coding, debugging, and documentation support.
 
