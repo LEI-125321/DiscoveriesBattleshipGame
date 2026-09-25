@@ -6,6 +6,8 @@ A gestão do tabuleiro e do posicionamento baseia-se na classe Position (que imp
 
 Por sua vez, a frota do jogador é representada pela classe Fleet (que implementa IFleet), responsável por agrupar e gerir uma coleção de instâncias de IShip. O sistema conta ainda com a classe Tasks, que funciona como centralizadora de comandos, mensagens de estado e regras de interação (como rajadas de tiros, desistências ou comandos de controlo de jogo).
 
+Este projeto foi desenvolvido com o auxílio de modelos de linguagem baseados em Inteligência Artificial. GitHub Copilot, Gemini e ChatGPT foram utilizados como ferramentas de suporte para programação, depuração de erros e documentação.
+
 Abaixo encontra-se o diagrama de classes do projeto:
 
 ```mermaid
