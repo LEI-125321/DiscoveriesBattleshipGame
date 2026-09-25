@@ -1,10 +1,10 @@
-/**
- *
- */
 package iscteiul.ista.battleship;
 
 import java.util.Objects;
 
+/**
+ * A coordinate on the game board and its current occupancy and hit state.
+ */
 public class Position implements IPosition {
     private int row;
     private int column;
@@ -12,7 +12,10 @@ public class Position implements IPosition {
     private boolean isHit;
 
     /**
+     * Creates an unoccupied, unhit board position.
      *
+     * @param row the zero-based row coordinate
+     * @param column the zero-based column coordinate
      */
     public Position(int row, int column) {
         this.row = row;
@@ -21,20 +24,16 @@ public class Position implements IPosition {
         this.isHit = false;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#getRow()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getRow() {
         return row;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#getColumn()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getColumn() {
@@ -42,15 +41,16 @@ public class Position implements IPosition {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return Objects.hash(column, isHit, isOccupied, row);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#equals(java.lang.Object)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(Object otherPosition) {
@@ -64,56 +64,49 @@ public class Position implements IPosition {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#isAdjacentTo(battleship.IPosition)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isAdjacentTo(IPosition other) {
         return (Math.abs(this.getRow() - other.getRow()) <= 1 && Math.abs(this.getColumn() - other.getColumn()) <= 1);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#occupy()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void occupy() {
         isOccupied = true;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#shoot()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void shoot() {
         isHit = true;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#isOccupied()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isOccupied() {
         return isOccupied;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#isHit()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isHit() {
         return isHit;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ("Linha = " + row + " Coluna = " + column);
